@@ -34,7 +34,6 @@
 		<PackageReference Include="LigerShark.WebOptimizer.Sass" Version="3.0.115" />
 		<PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.4.4" />
 		<PackageReference Include="Microsoft.SyndicationFeed.ReaderWriter" Version="1.0.2" />
-		<PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.2.0" />
 		<PackageReference Include="System.Linq.Async" Version="6.0.1" />
 		<PackageReference Include="WebMarkupMin.AspNetCore8" Version="2.15.3" />
 		<PackageReference Include="WilderMinds.MetaWeblog" Version="5.1.3" />
