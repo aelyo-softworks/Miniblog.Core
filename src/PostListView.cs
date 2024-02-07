@@ -1,11 +1,9 @@
 namespace Miniblog.Core
 {
-    public enum PostListView
-    {
-        TitlesOnly,
-
-        TitlesAndExcerpts,
-
-        FullPosts
-    }
+	public enum PostListView
+	{
+		TitlesOnly,
+		TitlesAndExcerpts,
+		FullPosts
+	}
 }

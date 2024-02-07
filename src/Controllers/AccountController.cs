@@ -1,68 +1,59 @@
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Miniblog.Core.Models;
+using Miniblog.Core.Services;
+
 namespace Miniblog.Core.Controllers
 {
-    using Microsoft.AspNetCore.Authentication;
-    using Microsoft.AspNetCore.Authentication.Cookies;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
+	[Authorize]
+	public class AccountController(IUserServices userServices) : Controller
+	{
+		[Route("/login")]
+		[AllowAnonymous]
+		[HttpGet]
+		public IActionResult Login(string? returnUrl = null)
+		{
+			ViewData[Constants.ReturnUrl] = returnUrl;
+			return View();
+		}
 
-    using Miniblog.Core.Models;
-    using Miniblog.Core.Services;
+		[Route("/login")]
+		[HttpPost, AllowAnonymous, ValidateAntiForgeryToken]
+		public async Task<IActionResult> LoginAsync(string? returnUrl, LoginViewModel? model)
+		{
+			ViewData[Constants.ReturnUrl] = returnUrl;
 
-    using System.Diagnostics.CodeAnalysis;
-    using System.Security.Claims;
-    using System.Threading.Tasks;
+			if (model is null || model.UserName is null || model.Password is null)
+			{
+				ModelState.AddModelError(string.Empty, Properties.Resources.UsernameOrPasswordIsInvalid);
+				return View(nameof(Login), model);
+			}
 
-    [Authorize]
-    public class AccountController : Controller
-    {
-        private readonly IUserServices userServices;
+			if (!ModelState.IsValid || !userServices.ValidateUser(model.UserName, model.Password))
+			{
+				ModelState.AddModelError(string.Empty, Properties.Resources.UsernameOrPasswordIsInvalid);
+				return View(nameof(Login), model);
+			}
 
-        public AccountController(IUserServices userServices) => this.userServices = userServices;
+			var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
+			identity.AddClaim(new Claim(ClaimTypes.Name, model.UserName));
 
-        [Route("/login")]
-        [AllowAnonymous]
-        [HttpGet]
-        [SuppressMessage("Design", "CA1054:Uri parameters should not be strings", Justification = "MVC binding")]
-        public IActionResult Login(string? returnUrl = null)
-        {
-            this.ViewData[Constants.ReturnUrl] = returnUrl;
-            return this.View();
-        }
+			var principle = new ClaimsPrincipal(identity);
+			var properties = new AuthenticationProperties { IsPersistent = model.RememberMe };
+			await HttpContext.SignInAsync(principle, properties).ConfigureAwait(false);
 
-        [Route("/login")]
-        [HttpPost, AllowAnonymous, ValidateAntiForgeryToken]
-        [SuppressMessage("Design", "CA1054:Uri parameters should not be strings", Justification = "MVC binding")]
-        public async Task<IActionResult> LoginAsync(string? returnUrl, LoginViewModel? model)
-        {
-            this.ViewData[Constants.ReturnUrl] = returnUrl;
+			return LocalRedirect(returnUrl ?? "/");
+		}
 
-            if (model is null || model.UserName is null || model.Password is null)
-            {
-                this.ModelState.AddModelError(string.Empty, Properties.Resources.UsernameOrPasswordIsInvalid);
-                return this.View(nameof(Login), model);
-            }
-
-            if (!this.ModelState.IsValid || !this.userServices.ValidateUser(model.UserName, model.Password))
-            {
-                this.ModelState.AddModelError(string.Empty, Properties.Resources.UsernameOrPasswordIsInvalid);
-                return this.View(nameof(Login), model);
-            }
-
-            var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
-            identity.AddClaim(new Claim(ClaimTypes.Name, model.UserName));
-
-            var principle = new ClaimsPrincipal(identity);
-            var properties = new AuthenticationProperties { IsPersistent = model.RememberMe };
-            await this.HttpContext.SignInAsync(principle, properties).ConfigureAwait(false);
-
-            return this.LocalRedirect(returnUrl ?? "/");
-        }
-
-        [Route("/logout")]
-        public async Task<IActionResult> LogOutAsync()
-        {
-            await this.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme).ConfigureAwait(false);
-            return this.LocalRedirect("/");
-        }
-    }
+		[Route("/logout")]
+		public async Task<IActionResult> LogOutAsync()
+		{
+			await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme).ConfigureAwait(false);
+			return LocalRedirect("/");
+		}
+	}
 }
