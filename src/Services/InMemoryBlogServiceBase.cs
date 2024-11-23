@@ -7,13 +7,12 @@ using Miniblog.Core.Models;
 
 namespace Miniblog.Core.Services
 {
-	public abstract class InMemoryBlogServiceBase : IBlogService
+	public abstract class InMemoryBlogServiceBase(IHttpContextAccessor contextAccessor) : IBlogService
 	{
-		protected InMemoryBlogServiceBase(IHttpContextAccessor contextAccessor) => ContextAccessor = contextAccessor;
-		protected List<Post> Cache { get; } = [];
-		protected IHttpContextAccessor ContextAccessor { get; }
+        protected List<Post> Cache { get; } = [];
+        protected IHttpContextAccessor ContextAccessor { get; } = contextAccessor;
 
-		public abstract Task DeletePost(Post post);
+        public abstract Task DeletePost(Post post);
 
 		public virtual IAsyncEnumerable<string> GetCategories()
 		{

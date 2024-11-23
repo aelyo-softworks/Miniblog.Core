@@ -9,11 +9,11 @@ namespace Miniblog.Core.Models
 {
 	public partial class Post
 	{
-		public IList<string> Categories { get; } = new List<string>();
+		public IList<string> Categories { get; } = [];
 
-		public IList<string> Tags { get; } = new List<string>();
+		public IList<string> Tags { get; } = [];
 
-		public IList<Comment> Comments { get; } = new List<Comment>();
+		public IList<Comment> Comments { get; } = [];
 
 		[Required]
 		public string Content { get; set; } = string.Empty;

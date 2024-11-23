@@ -41,15 +41,12 @@ namespace WebEssentials.AspNetCore.Pwa
             return Content(InsertStrategyOptions(js));
         }
 
-        private string InsertStrategyOptions(string javascriptString)
-        {
-            return javascriptString
+        private string InsertStrategyOptions(string javascriptString) => javascriptString
                 .Replace("{version}", options.CacheId + "::" + options.Strategy)
                 // *WARNING* note this line presumes the embedded .js files contains exactly the "{ routes }" string while this is subject to js formatting!
                 .Replace("{ routes }", string.Join(",", options.RoutesToPreCache.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(r => "'" + r.Trim() + "'")))
                 .Replace("{offlineRoute}", options.BaseRoute + options.OfflineRoute)
                 .Replace("{ignoreRoutes}", string.Join(",", options.RoutesToIgnore.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(r => "'" + r.Trim() + "'")));
-        }
 
         /// <summary>
         /// Serves the offline.html file

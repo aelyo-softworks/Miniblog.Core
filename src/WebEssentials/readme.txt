@@ -4,3 +4,4 @@ https://github.com/madskristensen/WebEssentials.AspNetCore.ServiceWorker
 https://github.com/madskristensen/WebEssentials.AspNetCore.OutputCaching
 https://github.com/madskristensen/WebEssentials.AspNetCore.CdnTagHelpers
 https://github.com/madskristensen/WebEssentials.AspNetCore.StaticFilesWithCache
+https://github.com/dotnet/SyndicationFeedReaderWriter

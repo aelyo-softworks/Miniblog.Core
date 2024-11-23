@@ -1,4 +1,4 @@
-﻿@model string
+﻿@model             string
 @{
     string currentUrl = $"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}";
     string enc = System.Net.WebUtility.UrlEncode(currentUrl);

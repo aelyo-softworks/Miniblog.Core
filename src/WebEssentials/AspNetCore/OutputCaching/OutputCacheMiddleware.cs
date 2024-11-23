@@ -101,7 +101,7 @@ namespace WebEssentials.AspNetCore.OutputCaching
 		private static string CalculateChecksum(byte[] bytes, HttpRequest request)
 		{
 			var encoding = Encoding.UTF8.GetBytes(request.Headers[HeaderNames.AcceptEncoding].ToString());
-			var buffer = SHA1.HashData(bytes.Concat(encoding).ToArray());
+			var buffer = SHA1.HashData([.. bytes, .. encoding]);
 			return $"\"{WebEncoders.Base64UrlEncode(buffer)}\"";
 		}
 	}
