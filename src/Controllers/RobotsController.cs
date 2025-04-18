@@ -50,7 +50,7 @@ namespace Miniblog.Core.Controllers
             xml.WriteStartElement("service");
 
             xml.WriteElementString("enginename", "Miniblog.Core");
-            xml.WriteElementString("enginelink", "http://github.com/madskristensen/Miniblog.Core/");
+            xml.WriteElementString("enginelink", "https://github.com/aelyo-softworks/Miniblog.Core/");
             xml.WriteElementString("homepagelink", host);
 
             xml.WriteStartElement("apis");
@@ -151,7 +151,7 @@ namespace Miniblog.Core.Controllers
             await atom.WriteTitle(manifest.Name).ConfigureAwait(false);
             await atom.WriteId(host).ConfigureAwait(false);
             await atom.WriteSubtitle(manifest.Description).ConfigureAwait(false);
-            await atom.WriteGenerator("Miniblog.Core", "https://github.com/madskristensen/Miniblog.Core", "1.0").ConfigureAwait(false);
+            await atom.WriteGenerator("Miniblog.Core", "https://github.com/aelyo-softworks/Miniblog.Core", "1.0").ConfigureAwait(false);
             await atom.WriteValue("updated", updated.ToString("yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture)).ConfigureAwait(false);
             return atom;
         }

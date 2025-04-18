@@ -151,7 +151,6 @@ namespace Microsoft.SyndicationFeed.Atom
         {
             ArgumentNullException.ThrowIfNull(item);
             ArgumentNullException.ThrowIfNull(item.Id);
-            ArgumentNullException.ThrowIfNull(item.Published);
             if (item.LastUpdated == default)
                 throw new ArgumentException("LastUpdated");
 
