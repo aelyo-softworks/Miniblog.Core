@@ -8,21 +8,21 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="WebEssentials\AspNetCore\ServiceWorker\ServiceWorker\Files\CacheFingerprinted.js" />
-	  <None Remove="WebEssentials\AspNetCore\ServiceWorker\ServiceWorker\Files\CacheFirst.js" />
-	  <None Remove="WebEssentials\AspNetCore\ServiceWorker\ServiceWorker\Files\CacheFirstSafe.js" />
-	  <None Remove="WebEssentials\AspNetCore\ServiceWorker\ServiceWorker\Files\Minimal.js" />
-	  <None Remove="WebEssentials\AspNetCore\ServiceWorker\ServiceWorker\Files\NetworkFirst.js" />
-	  <None Remove="WebEssentials\AspNetCore\ServiceWorker\ServiceWorker\Files\offline.html" />
+		<None Remove="WebEssentials\AspNetCore\ServiceWorker\ServiceWorker\Files\CacheFingerprinted.js" />
+		<None Remove="WebEssentials\AspNetCore\ServiceWorker\ServiceWorker\Files\CacheFirst.js" />
+		<None Remove="WebEssentials\AspNetCore\ServiceWorker\ServiceWorker\Files\CacheFirstSafe.js" />
+		<None Remove="WebEssentials\AspNetCore\ServiceWorker\ServiceWorker\Files\Minimal.js" />
+		<None Remove="WebEssentials\AspNetCore\ServiceWorker\ServiceWorker\Files\NetworkFirst.js" />
+		<None Remove="WebEssentials\AspNetCore\ServiceWorker\ServiceWorker\Files\offline.html" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="WebEssentials\AspNetCore\ServiceWorker\ServiceWorker\Files\CacheFingerprinted.js" />
-	  <EmbeddedResource Include="WebEssentials\AspNetCore\ServiceWorker\ServiceWorker\Files\CacheFirst.js" />
-	  <EmbeddedResource Include="WebEssentials\AspNetCore\ServiceWorker\ServiceWorker\Files\CacheFirstSafe.js" />
-	  <EmbeddedResource Include="WebEssentials\AspNetCore\ServiceWorker\ServiceWorker\Files\Minimal.js" />
-	  <EmbeddedResource Include="WebEssentials\AspNetCore\ServiceWorker\ServiceWorker\Files\NetworkFirst.js" />
-	  <EmbeddedResource Include="WebEssentials\AspNetCore\ServiceWorker\ServiceWorker\Files\offline.html" />
+		<EmbeddedResource Include="WebEssentials\AspNetCore\ServiceWorker\ServiceWorker\Files\CacheFingerprinted.js" />
+		<EmbeddedResource Include="WebEssentials\AspNetCore\ServiceWorker\ServiceWorker\Files\CacheFirst.js" />
+		<EmbeddedResource Include="WebEssentials\AspNetCore\ServiceWorker\ServiceWorker\Files\CacheFirstSafe.js" />
+		<EmbeddedResource Include="WebEssentials\AspNetCore\ServiceWorker\ServiceWorker\Files\Minimal.js" />
+		<EmbeddedResource Include="WebEssentials\AspNetCore\ServiceWorker\ServiceWorker\Files\NetworkFirst.js" />
+		<EmbeddedResource Include="WebEssentials\AspNetCore\ServiceWorker\ServiceWorker\Files\offline.html" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -31,7 +31,7 @@
 		<PackageReference Include="JavaScriptEngineSwitcher.Extensions.MsDependencyInjection" Version="3.24.1" />
 		<PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.29.1" />
 		<PackageReference Include="LigerShark.WebOptimizer.Core" Version="3.0.477" />
-		<PackageReference Include="LigerShark.WebOptimizer.Sass" Version="3.0.136" />
+		<PackageReference Include="LigerShark.WebOptimizer.Sass" Version="3.0.143" />
 		<PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.5.0" />
 		<PackageReference Include="System.Linq.Async" Version="6.0.3" />
 		<PackageReference Include="WebMarkupMin.AspNetCoreLatest" Version="2.19.0" />
@@ -55,8 +55,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="WebEssentials\AspNetCore\CdnTagHelpers\" />
-	  <Folder Include="WebEssentials\AspNetCore\OutputCaching\" />
-	  <Folder Include="WebEssentials\SyndicationFeed\" />
+		<Folder Include="WebEssentials\AspNetCore\CdnTagHelpers\" />
+		<Folder Include="WebEssentials\AspNetCore\OutputCaching\" />
+		<Folder Include="WebEssentials\SyndicationFeed\" />
 	</ItemGroup>
 </Project>
