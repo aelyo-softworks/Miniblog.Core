@@ -1,5 +1,5 @@
-# Blog engine for ASP.NET Core 9
-A full-featured yet simple blog engine built on ASP.NET Core 9, forked from [Mads Kristensen's Miniblog.Core](https://github.com/madskristensen/Miniblog.Core)
+# Blog engine for ASP.NET Core 10
+A full-featured yet simple blog engine built on ASP.NET Core 10, forked from [Mads Kristensen's Miniblog.Core](https://github.com/madskristensen/Miniblog.Core)
 
 ## Features
 - Windows/Open Live Writer support

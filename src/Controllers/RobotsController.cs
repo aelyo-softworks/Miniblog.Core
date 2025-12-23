@@ -76,7 +76,8 @@ namespace Miniblog.Core.Controllers
 
             using var xmlWriter = XmlWriter.Create(Response.Body, new XmlWriterSettings() { Async = true, Indent = true, Encoding = new UTF8Encoding(false) });
             var posts = blog.GetPosts(10);
-            var writer = await GetWriter(type, xmlWriter, await posts.MaxAsync(p => p.PubDate)).ConfigureAwait(false);
+            var max = await posts.MaxByAsync(p => p.PubDate).ConfigureAwait(false);
+            var writer = await GetWriter(type, xmlWriter, max?.PubDate ?? DateTime.UtcNow).ConfigureAwait(false);
 
             await foreach (var post in posts)
             {
